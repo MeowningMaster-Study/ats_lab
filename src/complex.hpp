@@ -308,7 +308,7 @@ double* Complex::div(const Complex& c) const
 
 bool Complex::equals(double a, double b) const
 {
-	return fabs(a - b) < a * 0.000001;
+	return fabs(a - b) <= a * 0.000001;
 }
 
 #endif // !COMPLEX_H
