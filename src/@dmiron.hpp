@@ -1,5 +1,6 @@
 #include <vector>
 #include "complex.hpp"
+#include "1-1(strassen-algorithm)/strassen.cpp"
 
 namespace dmiron{
 
@@ -93,25 +94,9 @@ namespace dmiron{
         return DecomposedMatrix{L, U};
     }
 
-// Назар, напиши мне когда напишешь свою функцию умножения, или замени тупа название в inverseMatrix
-    vector<vector<Complex>> multiplyMatrices(vector<vector<Complex>> aMatrix, vector<vector<Complex>> bMatrix){
-        vector<vector<Complex>> product = identityMatrix(aMatrix.size(), 0);
-
-        for (int row = 0; row < aMatrix.size(); row++) {
-            for (int col = 0; col < bMatrix.size(); col++) {
-                // Multiply the row of A by the column of B to get the row, column of product.
-                for (int inner = 0; inner < aMatrix.size(); inner++) {
-                    product[row][col] += aMatrix[row][inner] * bMatrix[inner][col];
-                }
-            }
-        }
-
-        return product;
-    }
-
     vector<vector<Complex>> inverseMatrix(vector<vector<Complex>> matrix){
         DecomposedMatrix dm = decomposeMatrix(matrix);
-        return multiplyMatrices(inverseUpperMatrix(dm.U), inverseLeftMatrix(dm.L));
+        return strassen_multiply(inverseUpperMatrix(dm.U), inverseLeftMatrix(dm.L));
     }
 
 }
