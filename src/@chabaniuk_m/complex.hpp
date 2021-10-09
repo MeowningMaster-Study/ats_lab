@@ -1,5 +1,4 @@
-#ifndef COMPLEX_H
-#define COMPLEX_H
+#pragma once
 
 #include <iostream>
 #include <sstream>
@@ -311,5 +310,3 @@ bool Complex::equals(double a, double b) const
 	const double eps = 0.000001;
 	return fabs(a - b) <= eps;
 }
-
-#endif // !COMPLEX_H
