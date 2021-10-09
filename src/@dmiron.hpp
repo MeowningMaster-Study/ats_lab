@@ -1,6 +1,6 @@
 #include <vector>
 #include "complex.hpp"
-#include "@theblacl1ght/strassen.h"
+#include "@theblacl1ght/strassen.hpp"
 
 namespace dmiron{
 

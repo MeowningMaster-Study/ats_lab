@@ -1,6 +1,6 @@
 #pragma once
 
-#include "basic_matrix.h"
+#include "basic_matrix.hpp"
 
 #include <vector>
 #include <utility>
