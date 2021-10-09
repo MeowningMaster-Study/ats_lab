@@ -20,8 +20,8 @@ namespace matrix {
 	Matrix<T> add_matrix(Matrix<T> lhs, const Matrix<T>& rhs);
 	template<typename T>
 	Matrix<T> sub_matrix(Matrix<T> lhs, const Matrix<T>& rhs);
+	size_t to_degrees_two(const size_t& number);
 }
-
 
 template<typename T>
 bool matrix::is_correct_multiply_sizes(
@@ -52,7 +52,6 @@ void matrix::to_square_matrix(
 		r.resize(size, 0);
 	}
 }
-
 
 template<typename T>
 Matrix<T> matrix::classic_multiply(
