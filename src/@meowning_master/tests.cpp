@@ -1,9 +1,13 @@
+#include <chrono>
 #include <cassert>
+#include <iostream>
+
 #include "../@chabaniuk_m/complex.hpp"
 #include "../@theblacl1ght/basic_matrix.hpp"
 #include "../@meowning_master/matrix.hpp"
 
-#include <iostream>
+using namespace std;
+using namespace std::chrono;
 
 template<class T>
 bool cmp_matrixes(Matrix<T> a, Matrix<T> b) {
@@ -73,11 +77,15 @@ void test_inverse_by_minors() {
         {{0, 0}, {0, -2}, {0, -4}},
         {{-5, 0}, {0, -4}, {5, -2}}
     };
+    auto start = high_resolution_clock::now();
     Matrix<Complex> r = matrix::inverse_by_minors(m);
+    auto stop = high_resolution_clock::now();
     Matrix<Complex> c = {
         {{0.330882, 0.0514706}, {0.220588, 0.367647}, {0.110294, 0.183824}},
         {{0.220588, 0.367647}, {0.147059, 0.411765}, {0.0735294, 0.455882}},
         {{0.110294, 0.183824}, {0.0735294, 0.455882}, {0.0367647, 0.227941}}
     };
     assert(cmp_matrixes(r, c));
+    auto duration = duration_cast<nanoseconds>(stop - start);
+    cout << "Inverse by minors nanoseconds elapsed: " << duration.count() << '\n';
 }
