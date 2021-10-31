@@ -3,6 +3,7 @@ using namespace std;
 
 #include "@chabaniuk_m/complex.hpp"
 #include "@dmiron.hpp"
+#include "@meowning_master/tests.cpp"
 
 int main() {
 //    // complex test
@@ -19,4 +20,9 @@ int main() {
 
     dmiron::displayMatrix(dmiron::inverseMatrix(matrix));
 
+    // @MeowningMaster tests
+    test_sub_matrix();
+    test_determinant();
+    test_transpose();
+    test_inverse_by_minors();
 }
