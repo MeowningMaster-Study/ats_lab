@@ -115,12 +115,6 @@ Complex chabaniuk_m::auxiliary::max_row_sum(const mtx_t& A) {
 
 Complex chabaniuk_m::auxiliary::max_column_sum(const mtx_t& A) {
 
-	if (A.size() < 1) {
-
-		cout << "Error: Matrix is empty [0x0]";
-		return 0;
-	}
-
 	Complex max = Complex(DBL_MIN, DBL_MIN);
 
 	for (size_t j = 0; j < A.at(0).size(); j++) {
