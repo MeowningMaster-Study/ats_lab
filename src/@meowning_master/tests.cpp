@@ -72,18 +72,18 @@ void test_transpose() {
 }
 
 void test_inverse_by_minors() {
-    Matrix<Complex> m = {
-        {{5, -2}, {0, 0}, {-5, 0}},
-        {{0, 0}, {0, -2}, {0, -4}},
-        {{-5, 0}, {0, -4}, {5, -2}}
+     Matrix<Complex> m = {
+        {{1, 0}, {0, 0}, {3, 0}},
+        {{4, 0}, {5, 0}, {6, 0}},
+        {{7, 0}, {8, 0}, {9, 0}}
     };
     auto start = high_resolution_clock::now();
     Matrix<Complex> r = matrix::inverse_by_minors(m);
     auto stop = high_resolution_clock::now();
     Matrix<Complex> c = {
-        {{0.330882, 0.0514706}, {0.220588, 0.367647}, {0.110294, 0.183824}},
-        {{0.220588, 0.367647}, {0.147059, 0.411765}, {0.0735294, 0.455882}},
-        {{0.110294, 0.183824}, {0.0735294, 0.455882}, {0.0367647, 0.227941}}
+        {{1./4, 0}, {-2, 0}, {5./4, 0}},
+        {{-1./2, 0}, {1, 0}, {-1./2, 0}},
+        {{1./4, 0}, {2./3, 0}, {-5./12, 0}}
     };
     assert(cmp_matrixes(r, c));
     auto duration = duration_cast<nanoseconds>(stop - start);
