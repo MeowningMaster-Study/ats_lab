@@ -70,8 +70,8 @@ namespace matrix {
         for (int i = 0; i < n; i += 1) {
             for (int k = 0; k < n; k += 1) {
                 Matrix<T> tmp = sub_matrix(m, i, k);
-                double sign = (i + k) % 2 ? -1 : 1;
-                r[i][k] = determinant(tmp) / d;
+                double sign = (i + k) & 1 ? -1 : 1;
+                r[i][k] = determinant(tmp) / d * sign;
             }
         }
         return transpose(r);
