@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "vector": "cpp",
-        "cassert": "cpp"
+        "cassert": "cpp",
+        "chrono": "cpp"
     }
 }
