@@ -24,5 +24,6 @@ int main() {
     test_sub_matrix();
     test_determinant();
     test_transpose();
+    test_measure_nanoseconds();
     test_inverse_by_minors();
 }
