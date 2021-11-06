@@ -4,27 +4,27 @@
 #include "..\util.hpp"
 
 // MAIN METHOD
-mtx_t chabaniuk_m::inverse(const mtx_t A, double epsilon) {		// add epsilon
+mtx_t chabaniuk_m::inverse(const mtx_t A, double epsilon) {
 
 	using namespace auxiliary;
 
 	if (!is_valid(A)) return vector<vector<Complex>>();
 	
-	mtx_t AH = get_hermitian_transpose_mtx(A);										// ермітова спряжена матриця
+	mtx_t AH = get_hermitian_transpose_mtx(A);										// ГҐГ°Г¬ВіГІГ®ГўГ  Г±ГЇГ°ГїГ¦ГҐГ­Г  Г¬Г ГІГ°ГЁГ¶Гї
 
-	Complex t_magnitude = Complex(1) / (max_row_sum(A) * max_column_sum(A));		// магнітуда
+	Complex t_magnitude = Complex(1) / (max_row_sum(A) * max_column_sum(A));		// Г¬Г ГЈГ­ВіГІГіГ¤Г 
 
 	mtx_t B = mult(AH, t_magnitude);			
 
-	mtx_t I = get_unit_mtx(A.size());												// одинична матриця
+	mtx_t I = get_unit_mtx(A.size());												// Г®Г¤ГЁГ­ГЁГ·Г­Г  Г¬Г ГІГ°ГЁГ¶Гї
 
 	mtx_t E;																		
 
 	do {
 
-		E = matrix::sub_matrix(I, matrix::classic_multiply(B, A));					// k-та матриця відхилення
+		E = matrix::sub_matrix(I, matrix::classic_multiply(B, A));					// k-ГІГ  Г¬Г ГІГ°ГЁГ¶Гї ГўВіГ¤ГµГЁГ«ГҐГ­Г­Гї
 
-		B = matrix::classic_multiply(matrix::add_matrix(I, E), B);					// результат при k-му відхиленні
+		B = matrix::classic_multiply(matrix::add_matrix(I, E), B);					// Г°ГҐГ§ГіГ«ГјГІГ ГІ ГЇГ°ГЁ k-Г¬Гі ГўВіГ¤ГµГЁГ«ГҐГ­Г­Ві
 
 	} while (to_number(E).to_rational() > epsilon);
 
@@ -83,9 +83,9 @@ mtx_t chabaniuk_m::auxiliary::get_unit_mtx(int n) {
 
 mtx_t chabaniuk_m::auxiliary::get_hermitian_transpose_mtx(const mtx_t& A) {
 
-	mtx_t At = matrix::transpose(A);			// транспонована матриця
+	mtx_t At = matrix::transpose(A);			// ГІГ°Г Г­Г±ГЇГ®Г­Г®ГўГ Г­Г  Г¬Г ГІГ°ГЁГ¶Гї
 
-	mtx_t AH = mtx_t(At);						// Ермітово-спряжена матриця
+	mtx_t AH = mtx_t(At);						// Г…Г°Г¬ВіГІГ®ГўГ®-Г±ГЇГ°ГїГ¦ГҐГ­Г  Г¬Г ГІГ°ГЁГ¶Гї
 
 	for (size_t i = 0; i < AH.size(); i++)
 		for (size_t j = 0; j < AH.at(i).size(); j++)
