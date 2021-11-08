@@ -1,7 +1,8 @@
 #include "newton.hpp"
 #include "..\@theblacl1ght\basic_matrix.hpp"
 #include "..\@meowning_master\matrix.hpp"
-#include "..\util.hpp"
+#include "util.hpp"
+#include <limits>
 
 // MAIN METHOD
 mtx_t chabaniuk_m::inverse(const mtx_t A, double epsilon) {
