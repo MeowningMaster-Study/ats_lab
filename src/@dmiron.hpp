@@ -106,5 +106,3 @@ namespace dmiron{
         return strassen_multiply(inverseUpperMatrix(dm.U), inverseLeftMatrix(dm.L));
     }
 }
-
-}
