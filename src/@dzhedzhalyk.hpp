@@ -4,7 +4,7 @@
 #include "@chabaniuk_m/complex.hpp"
 
 namespace dzhedzhalyk {
-    vector<vector<Complex>> augmentedMatrix (vector<vector<Complex>> matrix) {          //створення розширеної матриці (А|Е)
+    vector<vector<Complex>> augmentedMatrix (vector<vector<Complex>> matrix) {          //створення доповненої матриці (А|Е)
         vector<vector<Complex>> augmented = matrix;
         int n = matrix.size();
         for (int i=0; i<n; i++) {
@@ -51,7 +51,7 @@ namespace dzhedzhalyk {
 
         for(int i=0; i<n; i++)
             for(int j=0; j<n; j++)
-                inverse[i][j] = augmented[i][j+n];          //збереження правої частини розширеної матриці
+                inverse[i][j] = augmented[i][j+n];          //збереження правої частини доповненої матриці
 
         return inverse;
     }
