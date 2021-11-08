@@ -72,11 +72,12 @@ void test_transpose() {
     assert(cmp_matrixes(r, c));
 }
 
-void test_measure_nanoseconds() {
-    auto nanoseconds_elapsed = measure_nanoseconds([&](){
-        this_thread::sleep_for(milliseconds(1));
+void test_measure_duration() {
+    auto ns_duration = measure_duration([&](){
+        this_thread::sleep_for(milliseconds(5));
     });
-    cout << "Timer test " << nanoseconds_elapsed << "ns elapsed" << '\n';
+    auto duration = duration_cast<milliseconds>(ns_duration).count();
+    cout << "Timer test duration: " << duration << "ms" << '\n';
 }
 
 void test_inverse_by_minors() {
@@ -86,14 +87,18 @@ void test_inverse_by_minors() {
         {{7, 0}, {8, 0}, {9, 0}}
     };
     Matrix<Complex> r;
-    auto nanoseconds_elapsed = measure_nanoseconds([&](){
-        r = matrix::inverse_by_minors(m);
+    const int repeat_time = 1000;
+    auto ns_duration = measure_duration([&](){
+        for (int i = 0; i < repeat_time; i += 1) {
+            r = matrix::inverse_by_minors(m);
+        }
     });
+    auto op_duration = static_cast<double>(duration_cast<milliseconds>(ns_duration).count()) / repeat_time;
     Matrix<Complex> c = {
         {{1./4, 0}, {-2, 0}, {5./4, 0}},
         {{-1./2, 0}, {1, 0}, {-1./2, 0}},
         {{1./4, 0}, {2./3, 0}, {-5./12, 0}}
     };
     assert(cmp_matrixes(r, c));
-    cout << "Inverse by minors " << nanoseconds_elapsed << "ns elapsed" << '\n';
+    cout << "Inverse by minors duration:  " << op_duration << "ms" << '\n';
 }
