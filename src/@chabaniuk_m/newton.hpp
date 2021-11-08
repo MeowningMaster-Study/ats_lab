@@ -1,5 +1,5 @@
 #pragma once
-#include "complex.cpp"
+#include "complex.hpp"
 #include <vector>
 
 using mtx_t = std::vector<std::vector<Complex>>;
