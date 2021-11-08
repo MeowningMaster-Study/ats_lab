@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#include "@chabaniuk_m/complex.hpp"
+#include "@chabaniuk_m/complex.cpp"
 #include "@dmiron.hpp"
 #include "@meowning_master/tests.cpp"
 

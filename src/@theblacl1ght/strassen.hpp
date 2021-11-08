@@ -1,6 +1,6 @@
 #pragma once
 
-#include "basic_matrix.hpp"
+#include "basic_matrix.cpp"
 
 #include <vector>
 #include <utility>
@@ -23,12 +23,6 @@ namespace matrix {
 	void collect_matrix(Matrix<T>& a,
 		Matrix<T>& a1, Matrix<T>& a2, Matrix<T>& a3, Matrix<T>& a4);
 	size_t to_degrees_two(const size_t& number);
-}
-
-size_t matrix::to_degrees_two(const size_t& number) {
-	size_t d_two = 2;
-	while (number > d_two) { d_two = d_two << 1; }
-	return d_two;
 }
 
 template<typename T>

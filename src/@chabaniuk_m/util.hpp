@@ -1,6 +1,7 @@
+#pragma once
 #include <iostream>
 #include <iomanip>
-#include "newton.hpp"
+#include "newton.cpp"
 
 void show(const mtx_t matrix);
 

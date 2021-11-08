@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "@chabaniuk_m/complex.hpp"
+#include "@chabaniuk_m/complex.cpp"
 
 namespace dzhedzhalyk {
     vector<vector<Complex>> augmentedMatrix (vector<vector<Complex>> matrix) {          //створення доповненої матриці (А|Е)

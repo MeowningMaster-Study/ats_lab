@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "@chabaniuk_m/complex.hpp"   // комплексные числа
+#include "@chabaniuk_m/complex.cpp"   // комплексные числа
 #include "@theblacl1ght/strassen.hpp" // умножение
 
 namespace dmiron{

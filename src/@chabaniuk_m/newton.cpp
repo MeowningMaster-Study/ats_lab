@@ -1,5 +1,6 @@
+#pragma once
 #include "newton.hpp"
-#include "..\@theblacl1ght\basic_matrix.hpp"
+#include "..\@theblacl1ght\basic_matrix.cpp"
 #include "..\@meowning_master\matrix.hpp"
 #include "util.hpp"
 #include <limits>

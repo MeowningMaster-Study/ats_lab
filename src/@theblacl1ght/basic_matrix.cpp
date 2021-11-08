@@ -1,3 +1,4 @@
+#pragma once
 #include "basic_matrix.hpp"
 
 size_t matrix::to_degrees_two(const size_t& number) {

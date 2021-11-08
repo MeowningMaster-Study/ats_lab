@@ -3,8 +3,8 @@
 #include <thread>
 #include <iostream>
 
-#include "../@chabaniuk_m/complex.hpp"
-#include "../@theblacl1ght/basic_matrix.hpp"
+#include "../@chabaniuk_m/complex.cpp"
+#include "../@theblacl1ght/basic_matrix.cpp"
 #include "matrix.hpp"
 #include "timer.hpp"
 
