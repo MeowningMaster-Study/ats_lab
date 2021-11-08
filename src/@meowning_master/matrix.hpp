@@ -13,8 +13,8 @@ namespace matrix {
                     tmp[i][j] = m[row][col];
                     j += 1;
                     if (j == n - 1) {
-                    j = 0;
-                    i += 1;
+                        j = 0;
+                        i += 1;
                     }
                 }
             }
