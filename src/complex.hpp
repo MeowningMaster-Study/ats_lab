@@ -15,7 +15,7 @@ public:
 	Complex operator+(const Complex& other) const;
 	Complex operator+(const double rational) const;
 	Complex& operator+=(const Complex& other);
-	Complex& operator+=(const double rational);	
+	Complex& operator+=(const double rational);
 	Complex operator-(const Complex& other) const;
 	Complex operator-(const double rational) const;
 	Complex& operator-=(const Complex& other);
@@ -292,18 +292,18 @@ double* Complex::mult(const Complex& c) const
 
 double* Complex::div(const Complex& c) const
 {
-	double* res = new double[2];
-	double
-		a1 = r,
-		a2 = c.r,
-		b1 = i,
-		b2 = c.i;
-	double d = (a2 * a2 + b2 * b2);
+    double* res = new double[2];
+    double
+            a1 = r,
+            a2 = c.r,
+            b1 = i,
+            b2 = c.i;
+    double d = (a2 * a2 + b2 * b2);
 
-	res[0] = (a1 * a2 + b1 * b2) / d;
-	res[1] = (a1 * b2 - b1 * a2) / d;
+    res[0] = (a1 * a2 + b1 * b2) / d;
+    res[1] = (b1 * a2 - a1 * b2) / d;
 
-	return res;
+    return res;
 }
 
 bool Complex::equals(double a, double b) const

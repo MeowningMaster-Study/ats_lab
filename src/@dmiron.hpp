@@ -1,5 +1,8 @@
+#pragma once
+
 #include <vector>
-#include "complex.hpp"
+#include "complex.hpp"   // комплексные числа
+#include "strassen.h" // умножение
 
 namespace dmiron{
 
@@ -7,16 +10,20 @@ namespace dmiron{
         vector<vector<Complex>> L, U;
     };
 
+    // Повертає вектор v1, доданий до вектора v2.
     vector<Complex> addedVectors(vector<Complex> v1, vector<Complex> v2){
         for(int i=0; i<v1.size(); i++){ v1[i] += v2[i]; }
         return v1;
     }
 
+    // Повертає вектор v1, домножений на число c.
     vector<Complex> multipliedVector(vector<Complex> v1, Complex c){
         for(auto & i : v1){ i *= c; }
         return v1;
     }
 
+
+    // Виводить матрицю
     void displayMatrix(vector<vector<Complex>> matrix){
         for(vector<Complex> line : matrix){
             for(int i=0; i < line.size(); i++){
@@ -26,6 +33,7 @@ namespace dmiron{
         }
     }
 
+    // Повертає одиничну матрицю, розмiром n*n, домножену на c.
     vector<vector<Complex>> identityMatrix(int n, int c=1){
         vector<vector<Complex>> res;
         for (int i = 0; i < n; ++i) {
@@ -39,40 +47,39 @@ namespace dmiron{
         return res;
     }
 
+    // Обчисл. обернену матрицю для верхньої трикутної матрицi
     vector<vector<Complex>> inverseUpperMatrix(vector<vector<Complex>> matrix){
         vector<vector<Complex>> res = identityMatrix((int) matrix.size());
 
         for (long long i = (signed) matrix.size()-1; i >= 0; --i) {
-            Complex c = matrix[i][i];
-            if(c == Complex(0, 0)) throw std::invalid_argument("Inverse matrix does not exist!");
-            matrix[i] = multipliedVector(matrix[i], Complex(1)/c);
-            res[i] = multipliedVector(   res[i], Complex(1)/c);
+            if(matrix[i][i] == Complex(0, 0)) throw std::invalid_argument("Inverse matrix does not exist!");
+            res[i] = multipliedVector(   res[i], Complex(1)/matrix[i][i]);
+            matrix[i][i] = Complex(1);
             for (long long j = 0; j < i; ++j) {
-                c = matrix[j][i];
-                matrix[j] = addedVectors(matrix[j], multipliedVector(matrix[i], c * -1));
-                res[j] = addedVectors(   res[j], multipliedVector(   res[i], c * -1));
+                res[j] = addedVectors(   res[j], multipliedVector(   res[i], matrix[j][i] * -1));
+                matrix[j][i] = 0;
             }
         }
         return res;
     }
 
+    // Обчисл. обернену матрицю для нижньої трикутної матрицi
     vector<vector<Complex>> inverseLeftMatrix(vector<vector<Complex>> matrix){
         vector<vector<Complex>> res = identityMatrix((int) matrix.size());
 
         for (unsigned long long i = 0; i < matrix.size(); ++i) {
-            Complex c = matrix[i][i];
-            if(c == Complex(0, 0)) throw std::invalid_argument("Inverse matrix does not exist!");
-            matrix[i] = multipliedVector(matrix[i], Complex(1)/c);
-            res[i] = multipliedVector(   res[i], Complex(1)/c);
+            if(matrix[i][i] == Complex(0, 0)) throw std::invalid_argument("Inverse matrix does not exist!");
+            res[i] = multipliedVector(   res[i], Complex(1)/matrix[i][i]);
+            matrix[i][i] = 1;
             for (long long j = (signed) matrix.size()-1; j > i; --j) {
-                c = matrix[j][i];
-                matrix[j] = addedVectors(matrix[j], multipliedVector(matrix[i], c * -1));
-                res[j] = addedVectors(   res[j], multipliedVector(   res[i], c * -1));
+                res[j] = addedVectors(   res[j], multipliedVector(   res[i], matrix[j][i] * -1));
+                matrix[j][i] = 0;
             }
         }
         return res;
     }
 
+    // Розкладує матрицю matrix на L та U
     DecomposedMatrix decomposeMatrix(vector<vector<Complex>> matrix){
         vector<vector<Complex>> L = identityMatrix(matrix.size());
         vector<vector<Complex>> U = identityMatrix(matrix.size(), 0);
@@ -93,26 +100,9 @@ namespace dmiron{
         return DecomposedMatrix{L, U};
     }
 
-// Назар, напиши мне когда напишешь свою функцию умножения, или замени тупа название в inverseMatrix
-    vector<vector<Complex>> multiplyMatrices(vector<vector<Complex>> aMatrix, vector<vector<Complex>> bMatrix){
-        vector<vector<Complex>> product = identityMatrix(aMatrix.size(), 0);
-
-        for (int row = 0; row < aMatrix.size(); row++) {
-            for (int col = 0; col < bMatrix.size(); col++) {
-                // Multiply the row of A by the column of B to get the row, column of product.
-                for (int inner = 0; inner < aMatrix.size(); inner++) {
-                    product[row][col] += aMatrix[row][inner] * bMatrix[inner][col];
-                }
-            }
-        }
-
-        return product;
-    }
-
+    // Головна функція, яка викликає функцiю декомпозицiї матрицi matrix на L та U, i повертає U^(-1) L^(-1).
     vector<vector<Complex>> inverseMatrix(vector<vector<Complex>> matrix){
         DecomposedMatrix dm = decomposeMatrix(matrix);
-        return multiplyMatrices(inverseUpperMatrix(dm.U), inverseLeftMatrix(dm.L));
+        return strassen_multiply(inverseUpperMatrix(dm.U), inverseLeftMatrix(dm.L));
     }
-
 }
-
