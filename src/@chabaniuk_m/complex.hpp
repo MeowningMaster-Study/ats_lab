@@ -300,7 +300,7 @@ double* Complex::div(const Complex& c) const
 	double d = (a2 * a2 + b2 * b2);
 
 	res[0] = (a1 * a2 + b1 * b2) / d;
-	res[1] = (a1 * b2 - b1 * a2) / d;
+	res[1] = (b1 * a2 - a1 * b2) / d;
 
 	return res;
 }
