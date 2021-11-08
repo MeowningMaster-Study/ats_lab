@@ -3,6 +3,7 @@
 #include "..\@meowning_master\matrix.hpp"
 #include "util.hpp"
 #include <limits>
+#include <cfloat>
 
 // MAIN METHOD
 mtx_t chabaniuk_m::inverse(const mtx_t A, double epsilon) {
