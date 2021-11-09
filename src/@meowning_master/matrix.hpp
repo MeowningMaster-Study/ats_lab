@@ -3,6 +3,7 @@
 using namespace std;
 
 namespace matrix {
+    // повертає матрицю без заданого рядка та стовпчика
     template<class T>
     Matrix<T> sub_matrix(const Matrix<T>& m, int p, int q) {
         int i = 0, j = 0, n = m.size();
@@ -22,6 +23,7 @@ namespace matrix {
         return tmp;
     }
 
+    // обчислює визначник
     template<class T>
     T determinant(const Matrix<T>& m) {
         int n = m.size();
@@ -50,6 +52,7 @@ namespace matrix {
         return d;
     }
 
+    // транспонує матрицю
     template<class T>
     Matrix<T> transpose(const Matrix<T>& m) {
         int n = m.size();
@@ -62,6 +65,7 @@ namespace matrix {
         return r;
     }
 
+    // обчислює обернену матрицю методом мінорів
     template<class T>
     Matrix<T> inverse_by_minors(const Matrix<T>& m) {
         int n = m.size();

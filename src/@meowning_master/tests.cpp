@@ -10,6 +10,7 @@
 
 using namespace std;
 
+// порівнює матриці
 template<class T>
 bool cmp_matrixes(Matrix<T> a, Matrix<T> b) {
     if (a.size() != b.size()) {
